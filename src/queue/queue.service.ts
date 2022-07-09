@@ -15,18 +15,16 @@ export class QueueService {
     private readonly dispatcher: IDispatcher,
   ) {
     this.conn.addListener('save', (data: any) =>
-      this.subscribe({ eventData: data.eventData }),
+      this.subscribe({ eventData: data.eventData, postBack: data.postBack }),
     );
   }
 
   async create(createQueueDto: CreateQueueDto): Promise<void> {
     const queue = new this.conn(createQueueDto);
     await queue.save();
-    console.log('Saved');
   }
 
   async subscribe(dto: CreateQueueDto): Promise<void> {
-    console.log('Subscribed!');
     await this.dispatcher.create(dto);
   }
 }

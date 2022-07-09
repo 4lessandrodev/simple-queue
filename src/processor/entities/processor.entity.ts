@@ -7,6 +7,9 @@ export type ProcessorDocument = Processor & Document;
 export class Processor {
   @Prop({ type: String, required: true })
   eventData: string;
+
+  @Prop({ type: String, required: false, default: null })
+  postBack?: string;
 }
 
 export const ProcessorSchema = SchemaFactory.createForClass(Processor);

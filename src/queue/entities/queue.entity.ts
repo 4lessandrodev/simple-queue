@@ -7,6 +7,9 @@ export type QueueDocument = Queue & Document;
 export class Queue {
   @Prop({ type: String, required: true })
   eventData: string;
+
+  @Prop({ type: String, required: false, default: null })
+  postBack?: string;
 }
 
 export const QueueSchema = SchemaFactory.createForClass(Queue);
